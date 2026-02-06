@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 export default function Timer() {
     const [time, setTime] = useState(0);
+    const [showTimer, setShowTimer] = useState(true);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -11,6 +12,11 @@ export default function Timer() {
     }, []);
 
     return (
-        <p className="timer-display">Time: <span>{time}s</span></p>
+        <>
+            {showTimer && <p className="timer-display">Time: <span>{time}s</span></p>}
+            <button onClick={() => setShowTimer(!showTimer)}>
+                {showTimer ? "Hide Timer" : "Show Timer"}
+            </button>
+        </>
     );
 }
